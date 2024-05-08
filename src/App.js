@@ -1,52 +1,67 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import HeroBanner from './components/Hero Banner/HeroBanner';
 import { exerciseOption, fetchData } from './Utils/FetchData';
 
 import Navbar from './components/Navbar';
 import SearchBar from './components/SearchBar';
+import BodyPart from './BodyPart';
 
 function App() {
 
-const[search, setSearch] = useState("")
-const[exercises, setExercises] = useState([])
+  const [search, setSearch] = useState("");
+  const [bodyPart, setBodyPart] = useState([]);
 
-
-const handleChange=(e)=>{
-  setSearch(e.target.value)
-}
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (search) {
-    try {
-      const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=30', exerciseOption);
-      
-      const searchedExercises = exercisesData.filter(
-        (item) => item.name.toLowerCase().includes(search)
-               || item.target.toLowerCase().includes(search)
-               || item.equipment.toLowerCase().includes(search)
-               || item.bodyPart.toLowerCase().includes(search),
-      );
-
-      setSearch('');
-      setExercises(searchedExercises);
-      console.log(exercisesData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // Handle the error (e.g., show an error message to the user)
-    }
+  const handleChange = (e) => {
+    setSearch(e.target.value);
   }
-};
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("button clicked");
+  };
+
+  useEffect(() => {
+    const fetchBodyParts = async () => {
+      try {
+        const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOption);
+        setBodyPart(bodyPartsData);
+        console.log("Body Parts:", bodyPartsData);
+      } catch (error) {
+        console.error('Error fetching body parts:', error);
+      }
+    };
+
+    fetchBodyParts();
+  }, []); // Empty dependency array ensures useEffect runs only once on component mount
+
+  const fetchPartExercise= async()=>{
+    console.log("button pressed")
+    try{
+    const bodyPartExercises = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/back`, exerciseOption);
+    console.log(bodyPartExercises)
+  } catch (error) {
+    console.error('Error fetching body parts:', error);
+  }
+  
+  }
 
   return (
-   <>
-    <Navbar/>
-    <HeroBanner/>
-    <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} search={search} />
-   </>
+    <>
+      <Navbar />
+      <HeroBanner />
+      <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} search={search} />
+      <div>
+        <h2 className='text-center'>Body Parts</h2>
+        
+        <div className='bodyPart-container'>
+        {bodyPart.map((part)=>(
+          <BodyPart title={part} fetchPartExercise={fetchPartExercise}/>
+        ))}
+        </div>
+        
+      </div>
+    </>
   );
 }
 

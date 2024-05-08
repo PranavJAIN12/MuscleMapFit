@@ -29,10 +29,10 @@
 .btn{
     appearance: none;
     background-color: transparent;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     border-radius: 15px;
     box-sizing: border-box;
-    color: #ffffff;
+    color: #000000;
     cursor: pointer;
     display: inline-block;
     font-size: 16px;
