@@ -20,6 +20,14 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("button clicked");
+    try {
+      const searchedExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/target/${search}`, exerciseOption);
+      setSearch(searchedExercise)
+      console.log(searchedExercise)
+      setSearch('')
+    } catch (error){
+      console.log("error fetching searched body part exercise", error);
+    }
   };
 
   useEffect(() => {
@@ -64,6 +72,7 @@ function App() {
       />
       <div>
         <h2 className="text-center">Body Parts</h2>
+        
 
         <div className="bodyPart-container">
           {bodyPart.map((part) => (
@@ -84,6 +93,7 @@ function App() {
             />
           ))}
         </div>
+        
       </div>
     </>
   );
