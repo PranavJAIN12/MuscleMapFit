@@ -22,7 +22,7 @@ function App() {
     console.log("button clicked");
     try {
       const searchedExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/target/${search}`, exerciseOption);
-      setSearch(searchedExercise)
+      setBodyPartExercises(searchedExercise)
       console.log(searchedExercise)
       setSearch('')
     } catch (error){
