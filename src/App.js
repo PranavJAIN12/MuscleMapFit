@@ -45,7 +45,7 @@ function App() {
     };
 
     fetchBodyParts();
-  }, []); // Empty dependency array ensures useEffect runs only once on component mount
+  }, []); 
 
   const fetchPartExercise = async (bodyPart) => {
     console.log("button pressed");
@@ -71,18 +71,19 @@ function App() {
         search={search}
       />
       <div>
-        <h2 className="text-center">Body Parts</h2>
+        <h1 className="text-center" style={{marginTop: '6rem', color: '#E2703A'}}>Different Body Parts</h1>
+        <p className="text-center">Different body parts are available, select any body part and all exercise related to same will be displayed</p>
         
 
-        <div className="bodyPart-container">
+        <div className="bodyPart-container" style={{marginTop: '3rem'}}>
           {bodyPart.map((part) => (
             <BodyPart title={part} fetchPartExercise={fetchPartExercise} />
           ))}
         </div>
       </div>
       <div>
-        <h2 className="text-center my-3">Showing Results</h2>
-        <div className="exercise-container">
+        <h2 className="text-center" style={{marginTop: '6rem', color: '#E2703A'}}>Showing Results</h2>
+        <div className="exercise-container" style={{marginTop: '3rem'}}>
           {bodyPartExercises.map((exercises) => (
             <ExerciseCard
               gif={exercises.gifUrl}

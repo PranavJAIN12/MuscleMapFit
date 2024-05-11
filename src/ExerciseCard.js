@@ -12,7 +12,9 @@ export default function ExerciseCard(props) {
         height: "25rem",
         padding: "20px 0px",
         width: "43rem",
-        margin: "auto",
+        margin: "10px",
+        backgroundColor: '#251d10',
+        color: 'white'
       }}
     >
       <img
