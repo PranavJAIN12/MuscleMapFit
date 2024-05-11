@@ -21,11 +21,14 @@ function App() {
     e.preventDefault();
     console.log("button clicked");
     try {
-      const searchedExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/target/${search}`, exerciseOption);
-      setBodyPartExercises(searchedExercise)
-      console.log(searchedExercise)
-      setSearch('')
-    } catch (error){
+      const searchedExercise = await fetchData(
+        `https://exercisedb.p.rapidapi.com/exercises/target/${search}`,
+        exerciseOption
+      );
+      setBodyPartExercises(searchedExercise);
+      console.log(searchedExercise);
+      setSearch("");
+    } catch (error) {
       console.log("error fetching searched body part exercise", error);
     }
   };
@@ -45,7 +48,7 @@ function App() {
     };
 
     fetchBodyParts();
-  }, []); 
+  }, []);
 
   const fetchPartExercise = async (bodyPart) => {
     console.log("button pressed");
@@ -71,19 +74,32 @@ function App() {
         search={search}
       />
       <div>
-        <h1 className="text-center" style={{marginTop: '6rem', color: '#E2703A'}}>Different Body Parts</h1>
-        <p className="text-center">Different body parts are available, select any body part and all exercise related to same will be displayed</p>
-        
+        <h1
+          className="text-center"
+          style={{ marginTop: "6rem", color: "#E2703A" }}
+        >
+          Different Body Parts
+        </h1>
+        <p className="text-center">
+          Different body parts are available, select any body part and all
+          exercise related to same will be displayed
+        </p>
 
-        <div className="bodyPart-container" style={{marginTop: '3rem'}}>
+        <div className="bodyPart-container" style={{ marginTop: "3rem" }}>
           {bodyPart.map((part) => (
             <BodyPart title={part} fetchPartExercise={fetchPartExercise} />
           ))}
         </div>
       </div>
       <div>
-        <h2 className="text-center" style={{marginTop: '6rem', color: '#E2703A'}}>Showing Results</h2>
-        <div className="exercise-container" style={{marginTop: '3rem'}}>
+        <h1
+          className="text-center"
+          style={{ marginTop: "6rem", color: "#E2703A" }}
+        >
+          Showing Results
+        </h1>
+        <p className="text-center">Here it will render all the exercise of selected body part or muscle</p>
+        <div className="exercise-container" style={{ marginTop: "3rem" }}>
           {bodyPartExercises.map((exercises) => (
             <ExerciseCard
               gif={exercises.gifUrl}
@@ -94,7 +110,6 @@ function App() {
             />
           ))}
         </div>
-        
       </div>
     </>
   );
