@@ -29,10 +29,18 @@
 }
 .bodyPart-container{
   display: flex;
-  width: 100%;
+  width: 95%;
   margin: auto;
-  border: 1px solid black;
-  /* flex-basis: 33%; */
+  /* border: 1px solid black; */
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.exercise-container{
+  display: flex;
+  margin: auto;
+  width: 90%;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 @keyframes App-logo-spin {
