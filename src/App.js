@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import BodyPart from "./BodyPart";
 import ExerciseCard from "./ExerciseCard";
+import Footer from "./Footer";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -22,7 +23,7 @@ function App() {
     console.log("button clicked");
     try {
       const searchedExercise = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/target/${search}`,
+        `https://exercisedb.p.rapidapi.com/exercises/target/${search}?limit=14`,
         exerciseOption
       );
       setBodyPartExercises(searchedExercise);
@@ -54,7 +55,7 @@ function App() {
     console.log("button pressed");
     try {
       const bodyPartExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=14`,
         exerciseOption
       );
       console.log(bodyPartExercisesData);
@@ -111,6 +112,7 @@ function App() {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
