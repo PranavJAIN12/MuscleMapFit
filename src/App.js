@@ -9,6 +9,7 @@ import SearchBar from "./components/SearchBar";
 import BodyPart from "./BodyPart";
 import ExerciseCard from "./ExerciseCard";
 import Footer from "./Footer";
+import ExercisePageDetails from "./ExercisePageDetails";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -95,7 +96,7 @@ function App() {
                   </p>
 
                   <div
-                    className="bodyPart-container"
+                    className="bodyPart-container" id="bodyPart-container"
                     style={{ marginTop: "3rem" }}
                   >
                     {bodyPart.map((part) => (
@@ -135,6 +136,7 @@ function App() {
               </>
             }
           />
+          <Route path="/exercises/:id" element={<ExercisePageDetails/>}/> 
           <Route path="/about" element={<About/>}/>
         </Routes>
 

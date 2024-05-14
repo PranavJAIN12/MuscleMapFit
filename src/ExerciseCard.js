@@ -32,8 +32,8 @@ export default function ExerciseCard(props) {
           <span class="badge text-bg-warning mx-2 fs-6">{props.secondary1}</span>
           <span class="badge text-bg-warning fs-6">{props.secondary2}</span>
         </div>
-        <button className="btn btn-primary" onClick={props.fetchPartExercise}>
-          Show Exercise{" "}
+        <button className="btn btn-primary">
+          Show Details
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import gymimg from './components/Images/gymicon.png'
 
 export default function BodyPart({title, fetchPartExercise}) {
   return (
-    <div className="card"style={{
+    <div className="card" style={{
       justifyContent: 'center',
       textAlign: 'center',
       alignItems: 'center',
