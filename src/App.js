@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import HeroBanner from "./components/Hero Banner/HeroBanner";
 import { exerciseOption, fetchData } from "./Utils/FetchData";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import BodyPart from "./BodyPart";
@@ -67,52 +68,78 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <HeroBanner />
-      <SearchBar
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        search={search}
-      />
-      <div>
-        <h1
-          className="text-center"
-          style={{ marginTop: "6rem", color: "#E2703A" }}
-        >
-          Different Body Parts
-        </h1>
-        <p className="text-center">
-          Different body parts are available, select any body part and all
-          exercise related to same will be displayed
-        </p>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                {" "}
+                <HeroBanner />
+                <SearchBar
+                  handleSubmit={handleSubmit}
+                  handleChange={handleChange}
+                  search={search}
+                />
+                <div>
+                  <h1
+                    className="text-center"
+                    style={{ marginTop: "6rem", color: "#E2703A" }}
+                  >
+                    Different Body Parts
+                  </h1>
+                  <p className="text-center">
+                    Different body parts are available, select any body part and
+                    all exercise related to same will be displayed
+                  </p>
 
-        <div className="bodyPart-container" style={{ marginTop: "3rem" }}>
-          {bodyPart.map((part) => (
-            <BodyPart title={part} fetchPartExercise={fetchPartExercise} />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h1
-          className="text-center"
-          style={{ marginTop: "6rem", color: "#E2703A" }}
-        >
-          Showing Results
-        </h1>
-        <p className="text-center">Here it will render all the exercise of selected body part or muscle</p>
-        <div className="exercise-container" style={{ marginTop: "3rem" }}>
-          {bodyPartExercises.map((exercises) => (
-            <ExerciseCard
-              gif={exercises.gifUrl}
-              title={exercises.name}
-              target={exercises.target}
-              secondary1={exercises.secondaryMuscles[0]}
-              secondary2={exercises.secondaryMuscles[1]}
-            />
-          ))}
-        </div>
-      </div>
-      <Footer/>
+                  <div
+                    className="bodyPart-container"
+                    style={{ marginTop: "3rem" }}
+                  >
+                    {bodyPart.map((part) => (
+                      <BodyPart
+                        title={part}
+                        fetchPartExercise={fetchPartExercise}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h1
+                    className="text-center"
+                    style={{ marginTop: "6rem", color: "#E2703A" }}
+                  >
+                    Showing Results
+                  </h1>
+                  <p className="text-center">
+                    Here it will render all the exercise of selected body part
+                    or muscle
+                  </p>
+                  <div
+                    className="exercise-container"
+                    style={{ marginTop: "3rem" }}
+                  >
+                    {bodyPartExercises.map((exercises) => (
+                      <ExerciseCard
+                        gif={exercises.gifUrl}
+                        title={exercises.name}
+                        target={exercises.target}
+                        secondary1={exercises.secondaryMuscles[0]}
+                        secondary2={exercises.secondaryMuscles[1]}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
+            }
+          />
+          <Route path="/about" element={<About/>}/>
+        </Routes>
+
+        <Footer />
+      </Router>
     </>
   );
 }

@@ -9,6 +9,7 @@ export default function Navbar() {
         <div className="desktopMenu">
             <a href='/' className='desktopMenuListItem'>Home</a>
             <a href='/' className='desktopMenuListItem'>Excercise</a>
+            <a href='/' className='desktopMenuListItem'>About</a>
 
         </div>
 
