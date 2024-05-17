@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer() {
   return (
     
-    <footer className="footer" style={{ backgroundColor: '#251d10', color: '#eeb76b', bottom: '0', position:'absolute', width:'100%' }}>
+    <footer className="footer" style={{ backgroundColor: '#251d10', color: '#eeb76b' }}>
     <div className="container py-3">
       <div className="row d-flex justify-content-between">
         <div className="col-md-4">

@@ -1,7 +1,10 @@
 import React from "react";
 
+
 export default function ExerciseCard(props) {
+
   return (
+    
     <div
       className="card"
       style={{
