@@ -10,12 +10,16 @@ import BodyPart from "./BodyPart";
 import ExerciseCard from "./ExerciseCard";
 import Footer from "./Footer";
 import ExercisePageDetails from "./ExercisePageDetails";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 function App() {
   const [search, setSearch] = useState("");
   const [bodyPart, setBodyPart] = useState([]);
   const [bodyPartExercises, setBodyPartExercises] = useState([]);
-
+  const[loading, setLoading] = useState(false);
+  let [color, setColor] = useState("#ffc107");
+  
+ 
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -23,6 +27,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("button clicked");
+    setLoading(true)
     try {
       const searchedExercise = await fetchData(
         `https://exercisedb.p.rapidapi.com/exercises/target/${search}?limit=14`,
@@ -31,13 +36,17 @@ function App() {
       setBodyPartExercises(searchedExercise);
       console.log(searchedExercise);
       setSearch("");
+      setLoading(false)
+      
     } catch (error) {
       console.log("error fetching searched body part exercise", error);
+      setLoading(false)
     }
   };
 
   useEffect(() => {
     const fetchBodyParts = async () => {
+      setLoading(true)
       try {
         const bodyPartsData = await fetchData(
           "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
@@ -45,6 +54,7 @@ function App() {
         );
         setBodyPart(bodyPartsData);
         console.log("Body Parts:", bodyPartsData);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching body parts:", error);
       }
@@ -55,6 +65,7 @@ function App() {
 
   const fetchPartExercise = async (bodyPart) => {
     console.log("button pressed");
+    setLoading(true)
     try {
       const bodyPartExercisesData = await fetchData(
         `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=14`,
@@ -62,6 +73,7 @@ function App() {
       );
       console.log(bodyPartExercisesData);
       setBodyPartExercises(bodyPartExercisesData);
+      setLoading(false)
     } catch (error) {
       console.error("Error fetching body parts:", error);
     }
@@ -118,6 +130,14 @@ function App() {
                     Here it will render all the exercise of selected body part
                     or muscle
                   </p>
+                  <ScaleLoader
+        color={color}
+        loading={loading}
+        size={80}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        
+      />
                   <div
                     className="exercise-container"
                     style={{ marginTop: "3rem" }}

@@ -4,6 +4,7 @@ import banner from '../Images/banner.png'
 import { Tilt } from 'react-tilt'
 import './HeroBanner.css'
 
+
 export default function HeroBanner() {
   
   const defaultOptions = {
