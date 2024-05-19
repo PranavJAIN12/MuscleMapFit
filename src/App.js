@@ -17,7 +17,7 @@ function App() {
   const [bodyPart, setBodyPart] = useState([]);
   const [bodyPartExercises, setBodyPartExercises] = useState([]);
   const[loading, setLoading] = useState(false);
-  let [color, setColor] = useState("#ffc107");
+  let [color] = useState("#ffc107");
   
  
   const handleChange = (e) => {
@@ -130,13 +130,13 @@ function App() {
                     Here it will render all the exercise of selected body part
                     or muscle
                   </p>
-                  <ScaleLoader
+                  <ScaleLoader className="mx-auto"
         color={color}
         loading={loading}
         size={80}
         aria-label="Loading Spinner"
         data-testid="loader"
-        
+        style={{position:'absolute', left:'50%'}}
       />
                   <div
                     className="exercise-container"
