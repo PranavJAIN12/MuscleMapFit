@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import HeroBanner from "./components/Hero Banner/HeroBanner";
 import { exerciseOption, fetchData } from "./Utils/FetchData";
@@ -16,10 +16,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [bodyPart, setBodyPart] = useState([]);
   const [bodyPartExercises, setBodyPartExercises] = useState([]);
-  const[loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   let [color] = useState("#ffc107");
-  
- 
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -27,7 +26,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("button clicked");
-    setLoading(true)
+    setLoading(true);
     try {
       const searchedExercise = await fetchData(
         `https://exercisedb.p.rapidapi.com/exercises/target/${search}?limit=14`,
@@ -36,17 +35,16 @@ function App() {
       setBodyPartExercises(searchedExercise);
       console.log(searchedExercise);
       setSearch("");
-      setLoading(false)
-      
+      setLoading(false);
     } catch (error) {
       console.log("error fetching searched body part exercise", error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchBodyParts = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const bodyPartsData = await fetchData(
           "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
@@ -54,7 +52,7 @@ function App() {
         );
         setBodyPart(bodyPartsData);
         console.log("Body Parts:", bodyPartsData);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching body parts:", error);
       }
@@ -65,7 +63,7 @@ function App() {
 
   const fetchPartExercise = async (bodyPart) => {
     console.log("button pressed");
-    setLoading(true)
+    setLoading(true);
     try {
       const bodyPartExercisesData = await fetchData(
         `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=14`,
@@ -73,7 +71,7 @@ function App() {
       );
       console.log(bodyPartExercisesData);
       setBodyPartExercises(bodyPartExercisesData);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching body parts:", error);
     }
@@ -88,7 +86,6 @@ function App() {
             path="/"
             element={
               <>
-                {" "}
                 <HeroBanner />
                 <SearchBar
                   handleSubmit={handleSubmit}
@@ -108,11 +105,13 @@ function App() {
                   </p>
 
                   <div
-                    className="bodyPart-container" id="bodyPart-container"
+                    className="bodyPart-container"
+                    id="bodyPart-container"
                     style={{ marginTop: "3rem" }}
                   >
                     {bodyPart.map((part) => (
                       <BodyPart
+                        key={part} // Add key prop
                         title={part}
                         fetchPartExercise={fetchPartExercise}
                       />
@@ -130,25 +129,28 @@ function App() {
                     Here it will render all the exercise of selected body part
                     or muscle
                   </p>
-                  <ScaleLoader className="mx-auto"
-        color={color}
-        loading={loading}
-        size={80}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        style={{position:'absolute', left:'50%'}}
-      />
+                  <ScaleLoader
+                    className="mx-auto"
+                    color={color}
+                    loading={loading}
+                    size={80}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                    style={{ position: "absolute", left: "50%" }}
+                  />
                   <div
                     className="exercise-container"
                     style={{ marginTop: "3rem" }}
                   >
-                    {bodyPartExercises.map((exercises) => (
+                    {bodyPartExercises.map((exercise) => (
                       <ExerciseCard
-                        gif={exercises.gifUrl}
-                        title={exercises.name}
-                        target={exercises.target}
-                        secondary1={exercises.secondaryMuscles[0]}
-                        secondary2={exercises.secondaryMuscles[1]}
+                        key={exercise.id} // Add key prop
+                        id={exercise.id} // Pass id as prop
+                        gif={exercise.gifUrl}
+                        title={exercise.name}
+                        target={exercise.target}
+                        secondary1={exercise.secondaryMuscles[0]}
+                        secondary2={exercise.secondaryMuscles[1]}
                       />
                     ))}
                   </div>
@@ -156,10 +158,9 @@ function App() {
               </>
             }
           />
-          <Route path="/exercises/:id" element={<ExercisePageDetails/>}/> 
-          <Route path="/about" element={<About/>}/>
+          <Route path="/exercises/:id" element={<ExercisePageDetails />} />
+          <Route path="/about" element={<About />} />
         </Routes>
-
         <Footer />
       </Router>
     </>
