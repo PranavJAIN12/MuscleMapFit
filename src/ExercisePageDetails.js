@@ -23,10 +23,13 @@ export default function ExercisePageDetails() {
       }
     };
   }, [id])
+  console.log("hello");
 
   return (
     <div>
       <h1>hello world</h1>
+      <p>{exerciseDetail.bodyPart}</p>
+      <p>{exerciseDetail.equipment}</p>
     </div>
   )
 }
