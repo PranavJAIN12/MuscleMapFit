@@ -1,0 +1,28 @@
+
+
+
+#exercisePageDetail{
+    margin-top: 4rem;
+}
+.exercisePageDetailData{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    flex-wrap: wrap;
+    
+}
+.instructionData{
+    width: 80%;
+    margin: auto;
+}
+.muscleList {
+    display: flex;
+    flex-direction: column;
+}
+.muscleList li{
+    margin-top: 2rem;
+}
+.muscleList img{
+    height: 40px;
+}

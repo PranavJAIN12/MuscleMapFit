@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { exerciseOption, fetchData } from "./Utils/FetchData";
+import './ExercisePageDetail.css'
+import gym2 from '../src/components/Images/gym2.png'
+
 
 export default function ExercisePageDetails() {
   const [exerciseDetail, setExerciseDetail] = useState(null);
@@ -27,12 +30,38 @@ export default function ExercisePageDetails() {
   }
 
   return (
-    <div>
-      <h1>{exerciseDetail.name}</h1>
-      <p>Body Part: {exerciseDetail.bodyPart}</p>
-      <p>Equipment: {exerciseDetail.equipment}</p>
-      <p>Target: {exerciseDetail.target}</p>
-      <p>GIF URL: <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name} /></p>
-    </div>
+   
+    <section id='exercisePageDetail'>
+      <div className='exercisePageDetailData'>
+        <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name}/>
+        <div className="subdata">
+
+        <h1 className='my-3' style={{color:'#e2611d'}}>{exerciseDetail.name.toUpperCase()}</h1>
+        <h3 className='my-4'>Body Part: {exerciseDetail.bodyPart}</h3>
+        {/* <h4>Target Muscle: {exerciseDetail.target}</h4>
+        <h4>Secondary Muscles: {exerciseDetail.secondaryMuscles[0]}, {exerciseDetail.secondaryMuscles[1]}, {exerciseDetail.secondaryMuscles[2]}</h4> */}
+        <div>
+        <ul className='muscleList'>
+          <l1 className="my-2 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.target.toUpperCase()} </l1>
+          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[0].toUpperCase()} </l1>
+          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[1].toUpperCase()} </l1>
+
+        </ul>
+        </div>
+       
+        
+        </div>
+
+      </div>
+      <div className="instructionData">
+
+      <h1 className='text-center' style={{margin:'2rem 0rem', color:'#e2611d'}}>Exercise Instructions</h1>
+      <ol>
+        {exerciseDetail.instructions.map((instruction, index) => (
+          <li key={index} style={{fontSize: '1.3rem'}}>{instruction}</li>
+        ))}
+      </ol>
+      </div>
+    </section>
   )
 }
