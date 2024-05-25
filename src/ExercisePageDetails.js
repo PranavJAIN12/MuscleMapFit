@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { exerciseOption, fetchData } from "./Utils/FetchData";
 import './ExercisePageDetail.css'
-import gym2 from '../src/components/Images/gym2.png'
+import gym2 from '../src/components/Images/fitness.png'
 
 
 export default function ExercisePageDetails() {
@@ -36,15 +36,15 @@ export default function ExercisePageDetails() {
         <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name}/>
         <div className="subdata">
 
-        <h1 className='my-3' style={{color:'#e2611d'}}>{exerciseDetail.name.toUpperCase()}</h1>
+        <h1 className='my-3' style={{color:'#e2611d'}}>  {exerciseDetail.name }</h1>
         <h3 className='my-4'>Body Part: {exerciseDetail.bodyPart}</h3>
         {/* <h4>Target Muscle: {exerciseDetail.target}</h4>
         <h4>Secondary Muscles: {exerciseDetail.secondaryMuscles[0]}, {exerciseDetail.secondaryMuscles[1]}, {exerciseDetail.secondaryMuscles[2]}</h4> */}
         <div>
         <ul className='muscleList'>
-          <l1 className="my-2 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.target.toUpperCase()} </l1>
-          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[0].toUpperCase()} </l1>
-          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[1].toUpperCase()} </l1>
+          <l1 className="my-2 fs-4"><img src={gym2} alt='gym'/>   {exerciseDetail.target } </l1>
+          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[0] } </l1>
+          <l1 className="my-3 fs-4"><img src={gym2} alt='gym'/> {exerciseDetail.secondaryMuscles[1] } </l1>
 
         </ul>
         </div>
