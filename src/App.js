@@ -18,6 +18,7 @@ function App() {
   const [bodyPartExercises, setBodyPartExercises] = useState([]);
   const [loading, setLoading] = useState(false);
   let [color] = useState("#ffc107");
+  const[limit, setLimit] = useState(14);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -66,7 +67,7 @@ function App() {
     setLoading(true);
     try {
       const bodyPartExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=14`,
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=${limit}`,
         exerciseOption
       );
       console.log(bodyPartExercisesData);
@@ -77,6 +78,24 @@ function App() {
     }
   };
 
+  const handleNextPage=async(bodyPart)=>{
+    console.log("button pressed");
+    // setLimit(limit+14)
+    try {
+      const bodyPartExercisesData = await fetchData(
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=28`,
+        exerciseOption
+      );
+      console.log(bodyPartExercisesData);
+      setBodyPartExercises(bodyPartExercisesData);
+      // setLoading(false);
+    } catch (error) {
+      console.error("Error fetching body parts:", error);
+    }
+  }
+  const handlePrevPage=()=>{
+
+  }
   return (
     <>
       <Router>
@@ -153,6 +172,10 @@ function App() {
                         secondary2={exercise.secondaryMuscles[1]}
                       />
                     ))}
+                  </div>
+                  <div className="pageController">
+                    <button className="btn" onClick={handlePrevPage}>Prev</button>
+                    <button className="btn" onClick={handleNextPage}>Next</button>
                   </div>
                 </div>
               </>
