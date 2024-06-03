@@ -32,6 +32,9 @@ export default function ExercisePageDetails() {
   return (
    
     <section id='exercisePageDetail'>
+     <p className='app-info'>
+        Welcome to the Fitness App! Here you can find detailed information about various exercises to help you stay fit and healthy. Explore exercises by body part, target muscle, and more!
+      </p>
       <div className='exercisePageDetailData'>
         <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name}/>
         <div className="subdata">
@@ -62,6 +65,7 @@ export default function ExercisePageDetails() {
         ))}
       </ol>
       </div>
+
     </section>
   )
 }
