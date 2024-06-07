@@ -15,10 +15,11 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 function App() {
   const [search, setSearch] = useState("");
   const [bodyPart, setBodyPart] = useState([]);
+  const [selectedBodyPart, setSelectedBodyPart] = useState(""); // New state
   const [bodyPartExercises, setBodyPartExercises] = useState([]);
   const [loading, setLoading] = useState(false);
   let [color] = useState("#ffc107");
-  const[limit, setLimit] = useState(14);
+  const [limit, setLimit] = useState(14);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -64,10 +65,11 @@ function App() {
 
   const fetchPartExercise = async (bodyPart) => {
     console.log("button pressed");
+    setSelectedBodyPart(bodyPart); // Set the selected body part
     setLoading(true);
     try {
       const bodyPartExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=${limit}`,
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=14`,
         exerciseOption
       );
       console.log(bodyPartExercisesData);
@@ -75,27 +77,63 @@ function App() {
       setLoading(false);
     } catch (error) {
       console.error("Error fetching body parts:", error);
+      setLoading(false);
     }
   };
 
-  const handleNextPage=async(bodyPart)=>{
-    console.log("button pressed");
-    // setLimit(limit+14)
+  const handleNextPage = async () => {
+    if (!selectedBodyPart) {
+      console.error("No body part selected");
+      return;
+    }
+
+    console.log("Fetching next page exercises for body part:", selectedBodyPart);
+    setLimit((prevLimit) => prevLimit + 14); // Increment limit by 14
+    setLoading(true);
     try {
       const bodyPartExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?limit=28`,
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectedBodyPart}?limit=${limit}`,
         exerciseOption
       );
       console.log(bodyPartExercisesData);
       setBodyPartExercises(bodyPartExercisesData);
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching body parts:", error);
+      setLoading(false);
     }
-  }
-  const handlePrevPage=()=>{
+  };
 
-  }
+  const handlePrevPage = async () => {
+    if (!selectedBodyPart) {
+      console.error("No body part selected");
+      return;
+    }
+  
+    if (limit <= 14) {
+      console.log("Already at the first page of exercises");
+      return;
+    }
+  
+    console.log("Fetching previous page exercises for body part:", selectedBodyPart);
+    const newLimit = limit - 14;
+    setLoading(true);
+    try {
+      const bodyPartExercisesData = await fetchData(
+        `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${selectedBodyPart}?limit=${newLimit}`,
+        exerciseOption
+      );
+      console.log(bodyPartExercisesData);
+      setBodyPartExercises(bodyPartExercisesData);
+      setLimit(newLimit); // Update limit after fetching data
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching body parts:", error);
+      setLoading(false);
+    }
+  };
+  
+
   return (
     <>
       <Router>
@@ -132,7 +170,7 @@ function App() {
                       <BodyPart
                         key={part} // Add key prop
                         title={part}
-                        fetchPartExercise={fetchPartExercise}
+                        fetchPartExercise={() => fetchPartExercise(part)} // Pass the body part correctly
                       />
                     ))}
                   </div>
@@ -161,17 +199,21 @@ function App() {
                     className="exercise-container"
                     style={{ marginTop: "3rem" }}
                   >
-                    {bodyPartExercises.map((exercise) => (
-                      <ExerciseCard
-                        key={exercise.id} // Add key prop
-                        id={exercise.id} // Pass id as prop
-                        gif={exercise.gifUrl}
-                        title={exercise.name}
-                        target={exercise.target}
-                        secondary1={exercise.secondaryMuscles[0]}
-                        secondary2={exercise.secondaryMuscles[1]}
-                      />
-                    ))}
+                    {Array.isArray(bodyPartExercises) && bodyPartExercises.length > 0 ? (
+                      bodyPartExercises.map((exercise) => (
+                        <ExerciseCard
+                          key={exercise.id} // Add key prop
+                          id={exercise.id} // Pass id as prop
+                          gif={exercise.gifUrl}
+                          title={exercise.name}
+                          target={exercise.target}
+                          secondary1={exercise.secondaryMuscles[0]}
+                          secondary2={exercise.secondaryMuscles[1]}
+                        />
+                      ))
+                    ) : (
+                      <p>No exercises found.</p>
+                    )}
                   </div>
                   <div className="pageController">
                     <button className="btn" onClick={handlePrevPage}>Prev</button>
