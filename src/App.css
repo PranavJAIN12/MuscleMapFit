@@ -46,7 +46,13 @@ body{
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
+.pageController{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 3%;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

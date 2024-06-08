@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import HeroBanner from "./components/Hero Banner/HeroBanner";
@@ -193,7 +194,7 @@ function App() {
                     size={80}
                     aria-label="Loading Spinner"
                     data-testid="loader"
-                    style={{ position: "absolute", left: "50%" }}
+                    style={{ position: "absolute", left: "50%", marginTop:'3rem' }}
                   />
                   <div
                     className="exercise-container"
@@ -212,12 +213,12 @@ function App() {
                         />
                       ))
                     ) : (
-                      <p>No exercises found.</p>
+                      <p disabled={selectedBodyPart==true}>No exercises found.</p>
                     )}
                   </div>
                   <div className="pageController">
-                    <button className="btn" onClick={handlePrevPage}>Prev</button>
-                    <button className="btn" onClick={handleNextPage}>Next</button>
+                    <button style={{width:'9rem',}} className="btn" onClick={handlePrevPage} disabled={limit<=14}>Prev</button>
+                    <button style={{width: '9rem'}} className="btn" onClick={handleNextPage} disabled={selectedBodyPart==false}>Next</button>
                   </div>
                 </div>
               </>
