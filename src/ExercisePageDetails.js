@@ -32,7 +32,7 @@ export default function ExercisePageDetails() {
   return (
    
     <section id='exercisePageDetail'>
-     <p className='app-info'>
+     <p className='app-info text-center fs-5 my-3' style={{width:'80%', margin:'auto'}}>
         Welcome to the Fitness App! Here you can find detailed information about various exercises to help you stay fit and healthy. Explore exercises by body part, target muscle, and more!
       </p>
       <div className='exercisePageDetailData'>
