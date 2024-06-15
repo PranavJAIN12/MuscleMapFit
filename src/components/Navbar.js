@@ -11,6 +11,7 @@ export default function Navbar() {
             <a href='/' className='desktopMenuListItem'>Home</a>
             <a href='#bodyPart-container' className='desktopMenuListItem'>Excercise</a>
             <Link to='/about' className='desktopMenuListItem'>About</Link>
+            <button className='btn btn-primary'>Dark</button>
 
         </div>
 
