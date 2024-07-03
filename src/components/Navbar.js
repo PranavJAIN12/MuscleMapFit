@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-// import { Link2 } from 'react-scroll';
+
 import './Navbar.css'
 
 export default function Navbar() {
@@ -11,7 +11,7 @@ export default function Navbar() {
             <a href='/' className='desktopMenuListItem'>Home</a>
             <a href='#bodyPart-container' className='desktopMenuListItem'>Excercise</a>
             <Link to='/about' className='desktopMenuListItem'>About</Link>
-            <button className='btn btn-primary'>Dark</button>
+            {/* <button className='btn btn-primary'>Dark</button> */}
 
         </div>
 
