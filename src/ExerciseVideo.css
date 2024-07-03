@@ -1,0 +1,33 @@
+
+.exercise-video-data{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    /* align-content: center; */
+    flex-wrap: wrap;
+}
+.exercise-video-item{
+    margin: 1rem 1rem;
+    position: relative;
+}
+.yt{
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none; /* Initially hidden */
+            position: absolute; /* Positioned absolutely within the parent container */
+            top: 45px; /* Adjust as needed */
+            right: 120px; /* Adjust as needed */
+}
+.exercise-video-item:hover{
+    .yt{
+        display: block ;
+        opacity: 1;
+    }
+    .mainimg{
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+        /* border-radius: 100%; */
+    }
+}
