@@ -44,11 +44,11 @@ export default function ExercisePageDetails() {
       <div className='exercisePageDetailData'>
         <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name} />
         <div className="subdata">
-          <h1 className='my-3' style={{ color: '#e2611d' }}>{exerciseDetail.name}</h1>
-          <h3 className='my-4'>Body Part: {exerciseDetail.bodyPart}</h3>
+          <h1 className='my-3' style={{ color: '#e2611d' }}>{exerciseDetail.name.charAt(0).toUpperCase()+exerciseDetail.name.slice(1)}</h1>
+          <h3 className='my-4'>Body Part: {exerciseDetail.bodyPart.charAt(0).toUpperCase()+exerciseDetail.bodyPart.slice(1)}</h3>
           <div>
             <ul className='muscleList'>
-              <li className="my-2 fs-4"><img src={gym2} alt='gym' /> {exerciseDetail.target} </li>
+              <li className="my-2 fs-4"><img src={gym2} alt='gym' /> {exerciseDetail.target.charAt(0).toUpperCase()+exerciseDetail.target.slice(1)} </li>
               {exerciseDetail.secondaryMuscles.map((muscle, index) => (
                 <li key={index} className="my-3 fs-4"><img src={gym2} alt='gym' /> {muscle} </li>
               ))}

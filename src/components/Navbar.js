@@ -6,7 +6,7 @@ import './Navbar.css'
 export default function Navbar() {
   return (
     <nav className='navbar'>
-        <h1 className='navbar-head'>MuscleMapFit</h1>
+       <a href='/' style={{textDecoration:'none'}}> <h1 className='navbar-head'>MuscleMapFit</h1></a>
         <div className="desktopMenu">
             <a href='/' className='desktopMenuListItem'>Home</a>
             <a href='#bodyPart-container' className='desktopMenuListItem'>Excercise</a>

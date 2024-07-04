@@ -1,11 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import './ExerciseVideo.css'
 import yt from './components/Images/icons8-youtube-120.png'
 export default function ExerciseVideos({ exerciseVideos = [], name }) {
   return (
     <div>
-      {/* <p>heee</p> */}
-      <h3 className='text-center'>Watch {name} videos</h3>
+     
+      <h3 className='text-center'>Watch {name.charAt(0).toUpperCase()+name.slice(1)} videos</h3>
       {exerciseVideos.length > 0 ? (
         <div className='exercise-video-data'>
           {exerciseVideos.slice(0,5).map((item, index) => (
@@ -23,7 +24,7 @@ export default function ExerciseVideos({ exerciseVideos = [], name }) {
           ))}
         </div>
       ) : (
-        <p>No videos available</p>
+        <p className='text-center'>No videos available</p>
       )}
     </div>
   );

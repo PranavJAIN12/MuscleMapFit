@@ -170,7 +170,7 @@ function App() {
                     {bodyPart.map((part) => (
                       <BodyPart
                         key={part} // Add key prop
-                        title={part}
+                        title={part.charAt(0).toUpperCase()+part.slice(1)}
                         fetchPartExercise={() => fetchPartExercise(part)} // Pass the body part correctly
                       />
                     ))}
@@ -206,7 +206,7 @@ function App() {
                           key={exercise.id} // Add key prop
                           id={exercise.id} // Pass id as prop
                           gif={exercise.gifUrl}
-                          title={exercise.name}
+                          title={exercise.name.charAt(0).toUpperCase()+exercise.name.slice(1)}
                           target={exercise.target}
                           secondary1={exercise.secondaryMuscles[0]}
                           secondary2={exercise.secondaryMuscles[1]}
