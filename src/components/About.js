@@ -1,5 +1,6 @@
 import React from 'react'
-
+import git from './Images/icons8-github-50.png'
+import linkedin from './Images/icons8-linkedin-48.png'
 export default function About() {
   return (
     <section id="about" className="about-section">
@@ -43,20 +44,20 @@ export default function About() {
           </p>
           <div className="d-flex justify-content-center mt-3">
             <a
-              href="https://www.linkedin.com/in/your-linkedin-profile/" // Replace with your LinkedIn URL
+              href="https://www.linkedin.com/in/pranav-jain-32179722a/" // Replace with your LinkedIn URL
               target="_blank"
               rel="noreferrer"
               className="social-link mx-3"
             >
-              <i className="fab fa-linkedin"></i>
+              <img src={git} alt='git' className="fab fa-linkedin"></img>
             </a>
             <a
-              href="https://github.com/your-github-username" // Replace with your GitHub URL
+              href="https://github.com/PranavJAIN12" // Replace with your GitHub URL
               target="_blank"
               rel="noreferrer"
               className="social-link mx-3"
             >
-              <i className="fab fa-github"></i>
+              <img src={linkedin} alt='linkedin' className="fab fa-github"></img>
             </a>
           </div>
         </div>

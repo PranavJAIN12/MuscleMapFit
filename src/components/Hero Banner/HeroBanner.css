@@ -54,7 +54,7 @@
   
   .btn:hover {
     color: #000;
-    background-color: #EEB76B;
+    background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
     transition: 0.7s;
